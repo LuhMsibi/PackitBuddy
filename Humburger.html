@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ham.css">
+    <title>Hamburger Menu</title>
+</head>
+<body>
+    <nav>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <div class="close-icon" id="close-icon">X</div>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const closeIcon = document.getElementById('close-icon');
+        const navLinks = document.getElementById('nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.add('open');
+            hamburger.style.display = 'none';
+        });
+
+        closeIcon.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburger.style.display = 'flex';
+        });
+
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                hamburger.style.display = 'flex';
+            });
+        });
+    </script>
+</body>
+</html>

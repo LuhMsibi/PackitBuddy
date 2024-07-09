@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="GetQuote.css">
+    <title>Get Quote</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <span class="close-icon" id="close-icon">&times;</span>
+
+            <div class="profile">
+                <img src="images/support.svg" alt="#">
+
+                <div class="bio" >
+                    <p id="name">Lungisani Msibi</p>
+                    <p>LuhMsibi@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="listSection">
+                <img src="images/home.svg" alt="#">
+            
+                <li><a href="#">Home</a></li>
+            </div>
+            <div class="listSection">
+                <img src="images/history.svg" alt="#">
+                <li><a href="#">Order History</a></li>
+               
+            </div>
+            <div class="listSection">
+                <img src="images/discount.svg" alt="#">
+                <li><a href="#">My Deals & Discounts</a></li>
+            </div>
+
+            <div class="listSection">
+                <img src="images/refer.svg" alt="#">
+                <li><a href="#">Referal & Review</a></li>
+            </div>
+
+            <div class="listSection">
+                <img src="images/support.svg" alt="#">
+                <li><a href="#">Support</a></li>
+            </div>
+
+            <div class="listSection"  id="bottom">
+                <img src="images/log-out.svg" alt="#">
+                <li><a href="Login.html">Sign Out</a></li>
+            </div>
+        </ul>
+    </nav>
+    <main>
+        <h2>Get Quote</h2>
+        <div class="form-container">
+            <h3>Total price: R250</h3>
+            <form action="Payement.html">
+                <div class="form-group">
+                    <label for="consignment-type">Consignment Type</label>
+                    <select id="consignment-type" name="consignment-type">
+                        <option value="Few items">Just few items</option>
+                        <option value="1bed">1 Bedroom</option>
+                        <option value="2bed">2 Bedroom</option>
+                        <option value="3bed">3 Bedroom</option>
+                        <option value="4bed">4+ Bedroom</option>
+                        <option value="Office">Office Move</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="moving-date">Estimated Moving Date</label>
+                    <input type="date" id="moving-date" name="moving-date">
+                </div>
+                
+                <button type="submit" class="submit-button">Proceed to checkout</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const closeIcon = document.getElementById('close-icon');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        closeIcon.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+
+        // Add event listener to nav links to close menu when clicked
+        const navItems = navLinks.querySelectorAll('li');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>

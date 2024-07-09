@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .payment-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #000;
+            outline: none;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .submit-button:hover {
+            background-color: #333;
+        }
+
+        .submit-button:active {
+            background-color: #555;
+        }
+
+        #card-type {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        #card-type img {
+            margin-left: 10px;
+            width: 30px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="payment-container">
+        <h1>Payment</h1>
+        <form>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                <div id="card-type"></div>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+            </div>
+            <div class="form-group">
+                <label for="zip-code">ZIP Code</label>
+                <input type="text" id="zip-code" name="zip-code" placeholder="12345" maxlength="10">
+            </div>
+            <button type="submit" class="submit-button">Pay Now</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cardNumberInput = document.getElementById("card-number");
+            const expiryDateInput = document.getElementById("expiry-date");
+            const cardTypeDiv = document.getElementById("card-type");
+
+            cardNumberInput.addEventListener("input", function() {
+                let cardNumber = cardNumberInput.value.replace(/\D/g, "");
+                cardNumber = cardNumber.replace(/(.{4})/g, "$1 ").trim();
+                cardNumberInput.value = cardNumber;
+
+                let cardType = "";
+                let cardLogo = "";
+
+                if (cardNumber.startsWith("4")) {
+                    cardType = "Visa";
+                    cardLogo = "https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg";
+                } else if (cardNumber.startsWith("5")) {
+                    cardType = "MasterCard";
+                    cardLogo = "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg";
+                } else {
+                    cardType = "";
+                    cardLogo = "";
+                }
+
+                if (cardType) {
+                    cardTypeDiv.innerHTML = `<span>${cardType}</span><img src="${cardLogo}" alt="${cardType} logo">`;
+                } else {
+                    cardTypeDiv.innerHTML = "";
+                }
+            });
+
+            expiryDateInput.addEventListener("input", function() {
+                let value = expiryDateInput.value;
+                if (value.length === 2 && !value.includes("/")) {
+                    expiryDateInput.value = value + "/";
+                }
+            });
+        });
+
+
+
+        //test
+       
+    </script>
+</body>
+</html>

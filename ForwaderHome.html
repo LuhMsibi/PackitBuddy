@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Home</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+
+        main {
+            flex: 1; /* Ensure main content takes up remaining space */
+            padding: 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(19, 26, 75);
+            padding: 0 20px;
+            height: 60px;
+            position: relative;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+        }
+
+        .hamburger .line {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .close-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            margin-top: auto; /* Push to bottom */
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            transition: background-color 0.3s;
+            /* padding: 8px 16px; */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        /* .nav-links li:hover,
+        .nav-links li:focus {
+            background-color: rgba(255, 251, 0, 0.5); /* Highlight color */
+            /* border-radius: 4px; */
+        /* } */ 
+
+        .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
+            }
+
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: block;
+                flex-direction: column;
+                width: 70%;
+                max-width: 300px;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100%;
+                background-color: rgb(19, 26, 75);
+                transition: left 0.3s ease;
+                padding-top: 60px; /* To avoid overlapping with the navbar */
+                border-right: 2px solid #444;
+                font-size: 16px; /* Increase font size */
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            
+
+            .nav-links a {
+                padding: 16px; /* Increase padding */
+                text-align: left;
+                border-bottom: 1px solid #444; /* Add border */
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none; /* Remove border from last item */
+            }
+
+            /* .nav-links li:hover,
+            .nav-links li:focus {
+                background-color: rgba(255, 251, 0, 0.5); /* Highlight color */
+            }
+
+            .nav-links .close-icon {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+            .listSection img {
+            width: 20px;
+            /* color: white; */ /* Remove this line */
+            padding: 10px;
+            filter: brightness(0) invert(1); /* Change color to white */
+            }
+
+            
+            .profile{
+                border-bottom: 1px solid #444;
+                margin-left: 10px;
+                color: white;
+            }
+
+            .profile img{
+                width: 80px;
+                filter: brightness(0) invert(1); /* Change color to white */
+            }
+
+            .bio{
+                margin-top: 5px;
+                position: relative;
+            }
+            #name{
+                position: absolute;
+                bottom: 2px;
+            }
+
+/* Adjust other styles as needed */
+
+
+            .listSection{
+                display: flex;
+            }
+
+            .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
+            }
+
+            #bottom {
+                margin-top: 90px; /* Space above the bottom link */
+                /* padding: 8px 16px; */
+                border-top: 1px solid #444; 
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <span class="close-icon" id="close-icon">&times;</span>
+            <div class="profile">
+                <img src="images/support.svg" alt="#">
+
+                <div class="bio" >
+                    <p id="name">Leonel Messi</p>
+                    <p>LuhMsibi@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="listSection">
+                <img src="images/home.svg" alt="#">
+            
+                <li><a href="#">Home</a></li>
+            </div>
+            <div class="listSection">
+                <img src="images/history.svg" alt="#">
+                <li><a href="#">Trip History</a></li>
+               
+            </div>
+            <div class="listSection">
+                <img src="images/verify.svg" alt="#">
+                <li><a href="#">Vehicle Registration & Verification</a></li>
+            </div>
+
+            <div class="listSection">
+                <img src="images/route.svg" alt="#">
+                <li><a href="#">Routing & Scheduling</a></li>
+            </div>
+
+            <div class="listSection">
+                <img src="images/support.svg" alt="#">
+                <li><a href="#">Support</a></li>
+            </div>
+
+            <div class="listSection"  id="bottom">
+                <img src="images/log-out.svg" alt="#">
+                <li><a href="Login.html">Sign Out</a></li>
+            </div>
+        </ul>
+    </nav>
+    <main>
+        <h2>Welcome home client</h2>
+        <!-- Your main content here -->
+        <a href="Login.html"><p>Sign out</p></a>
+      
+    </main>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const closeIcon = document.getElementById('close-icon');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        closeIcon.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+
+        // Add event listener to nav links to close menu when clicked
+        const navItems = navLinks.querySelectorAll('li');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
