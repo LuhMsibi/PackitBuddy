@@ -110,7 +110,7 @@
         .section-title {
             font-size: 20px;
             margin-bottom: 15px;
-            font-weight: bold;
+            font-weight: 500;
         }
 
         .faq, .support-topic {
@@ -122,7 +122,7 @@
 
         .faq-question, .support-topic-title {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 500;
             margin: 0;
         }
 
@@ -140,7 +140,7 @@
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
+            font-weight: 500;
         }
 
         input[type="text"], input[type="email"], textarea {
@@ -284,12 +284,14 @@
             <span class="close-icon" id="close-icon">&times;</span>
 
             <div class="profile">
+                <a href="Profile.html">
                 <img src="../images/support.svg" alt="#">
 
                 <div class="bio" >
                     <p id="name">Lungisani Msibi</p>
                     <p>LuhMsibi@gmail.com</p>
                 </div>
+            </a>
             </div>
 
             <div class="listSection">
@@ -309,7 +311,7 @@
 
             <div class="listSection">
                 <img src="../images/refer.svg" alt="#">
-                <li><a href="#">Referal & Review</a></li>
+                <li><a href="Referal&Review.html">Referal & Review</a></li>
             </div>
 
             <div class="listSection">
@@ -336,7 +338,7 @@
                 </div>
                 <div class="faq">
                     <p class="faq-question">How can I contact customer service?</p>
-                    <p class="faq-answer">You can contact customer service through the "Help" section in the PackItBuddy app or by filling out the contact form below.</p>
+                    <p class="faq-answer">You can contact customer service through the "Support" section in the PackItBuddy app or by filling out the contact form below.</p>
                 </div>
             </div>
             
@@ -362,11 +364,11 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        <input type="email" id="email" name="emails" placeholder="Enter your email address" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Enter your message" rows="5" required></textarea>
+                        <textarea id="message" name="messages" placeholder="Enter your message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit</button>
                 </form>

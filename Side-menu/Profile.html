@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deals and Discounts</title>
+    <title>Profile</title>
     <style>
         /* General styles */
         body {
@@ -18,6 +18,7 @@
         main {
             flex: 1; /* Ensure main content takes up remaining space */
             padding: 20px;
+            z-index: -100;
         }
 
         nav {
@@ -86,10 +87,9 @@
             }
 
 
-
-
-            /*promotion css*/
-            .promo-container {
+        
+        /*edit profile css main*/
+        .profile-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -104,6 +104,44 @@
             margin-bottom: 20px;
         }
 
+        .profile-picture-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #e8e8e8;
+        }
+
+        .profile-picture-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 125px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-picture-edit::before {
+            content: '\270E'; /* Unicode for the pencil icon */
+            font-size: 14px;
+        }
+
+        .add-photo input[type="file"] {
+            display: none;
+        }
+
         .form-group {
             margin-bottom: 15px;
             text-align: left;
@@ -112,33 +150,43 @@
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: 500;
+            font-weight: bold;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="email"], input[type="file"], input[type="tel"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: none;
+            border-bottom: 1px solid #ddd;
             box-sizing: border-box;
             font-size: 16px;
         }
 
-        input[type="text"]:focus {
-            border-color: #000;
+        input[type="text"]:focus, input[type="email"]:focus, input[type="file"]:focus, input[type="tel"]:focus {
+            border-bottom-color: #000;
             outline: none;
+        }
+
+        .edit-button {
+            background-color: transparent;
+            border: none;
+            color: #00a000;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
         }
 
         .submit-button {
             width: 100%;
             padding: 10px;
-            background-color: rgb(255, 251, 0);
-            color: #000;
+            background-color: #000;
+            color: #fff;
             border: none;
             border-radius: 5px;
             font-size: 18px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
+            margin-top: 10px;
         }
 
         .submit-button:hover {
@@ -149,39 +197,23 @@
             background-color: #555;
         }
 
-        .promo-status {
+        .profile-status {
             margin-top: 20px;
             font-size: 18px;
             color: green;
         }
 
-        .promo-status.error {
+        .profile-status.error {
             color: red;
         }
 
-        .section-title {
-            margin-top: 30px;
-            text-align: left;
+        .hidden {
+            display: none;
+        }
+
+        .icon {
             font-size: 18px;
-            font-weight: 500;
-        }
-
-        .offer {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .offer-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .offer-details {
-            font-size: 14px;
-            color: #555;
+            vertical-align: middle;
         }
 
 
@@ -271,6 +303,7 @@
                 margin-top: 90px;
                 border-top: 1px solid #444; 
             }
+       
             
         }
     </style>
@@ -286,14 +319,12 @@
             <span class="close-icon" id="close-icon">&times;</span>
 
             <div class="profile">
-                <a href="Profile.html">
                 <img src="../images/support.svg" alt="#">
 
                 <div class="bio" >
                     <p id="name">Lungisani Msibi</p>
                     <p>LuhMsibi@gmail.com</p>
                 </div>
-            </a>
             </div>
 
             <div class="listSection">
@@ -308,7 +339,7 @@
             </div>
             <div class="listSection">
                 <img src="../images/discount.svg" alt="#">
-                <li><a href="#">My Deals & Discounts</a></li>
+                <li><a href="Deals&Discounts.html">My Deals & Discounts</a></li>
             </div>
 
             <div class="listSection">
@@ -329,31 +360,43 @@
     </nav>
     <main>
 
-        <div class="promo-container">
-            <h1>Apply Promo Code</h1>
-            <form id="promo-form">
+        <div class="profile-container">
+            <h1>Personal Info</h1>
+            <div class="profile-picture-wrapper">
+                <img id="profile-picture" src="../images/support.svg" alt="Profile Picture" class="profile-picture">
+                <div class="profile-picture-edit">
+                    <input type="file" id="profile-picture-input" name="profile-picture" accept="image/*">
+                </div>
+            </div>
+            <p>Add a profile photo so drivers can recognise you</p>
+            <form id="profile-form">
                 <div class="form-group">
-                    <label for="promo-code">Promo Code</label>
-                    <input type="text" id="promo-code" name="promo-code" placeholder="Enter your promo code">
+                    <label for="username">
+                        <span class="icon">&#128100;</span>
+                        Username
+                        <button type="button" id="edit-username-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="text" id="username" name="username" value="Aiden Van Wyk" disabled required>
                 </div>
-                <button type="submit" class="submit-button">Apply</button>
+                <div class="form-group">
+                    <label for="phone">
+                        <span class="icon">&#128241;</span>
+                        Phone Number
+                        <button type="button" id="edit-phone-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="tel" id="phone" name="phone" value="+27761414059" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        <span class="icon">&#9993;</span>
+                        Email
+                        <button type="button" id="edit-email-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="email" id="email" name="email" value="lindelanilungisani81@gmail.com" disabled required>
+                </div>
+                <button type="submit" id="submit-button" class="submit-button hidden">Save Changes</button>
             </form>
-            <div id="promo-status" class="promo-status"></div>
-    
-            <div id="your-promotions">
-                <div class="section-title">Your Promotions</div>
-                <div id="your-promo-offer">
-                    <!-- Initially empty, will be populated with applied promo code -->
-                </div>
-            </div>
-    
-            <div id="current-offers">
-                <div class="section-title">Current Offers</div>
-                <div class="offer">
-                    <p class="offer-title">Promo Code: DISCOUNT50</p>
-                    <p class="offer-details">Use promo code DISCOUNT50 to get 50% off one ride. Valid for new users only.</p>
-                </div>
-            </div>
+            <div id="profile-status" class="profile-status"></div>
         </div>
 
     </main>
@@ -380,45 +423,53 @@
         });
 
 
-        //promocode javascrip valid and invalid code
-        document.getElementById("promo-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const promoCode = document.getElementById("promo-code").value;
-            const promoStatus = document.getElementById("promo-status");
-            const yourPromoOffer = document.getElementById("your-promo-offer");
+    //edit profile javascript
+    const profilePictureInput = document.getElementById("profile-picture-input");
+        const profilePicture = document.getElementById("profile-picture");
 
-            // Simulated promo code validation and offers
-            const offers = {
-                "BUDDY2024": {
-                    title: "20% Off Your Next Ride",
-                    details: "You have 20% off your next ride. Valid until December 31, 2024."
-                },
-                "DISCOUNT50": {
-                    title: "50% Off One Ride",
-                    details: "You have 50% off one ride. Valid for new users only."
-                },
-                "FREE50": {
-                    title: "50 Free Ride Points",
-                    details: "You have  50 free ride points. Valid until August 31, 2024."
-                }
-            };
+        document.querySelector('.profile-picture-edit').addEventListener("click", () => {
+            profilePictureInput.click();
+        });
 
-            if (offers[promoCode.toUpperCase()]) {
-                promoStatus.textContent = "Promo code applied successfully!";
-                promoStatus.classList.remove("error");
-                const offer = offers[promoCode.toUpperCase()];
-                yourPromoOffer.innerHTML = `
-                    <div class="offer">
-                        <p class="offer-title">${offer.title}</p>
-                        <p class="offer-details">${offer.details}</p>
-                    </div>
-                `;
-            } else {
-                promoStatus.textContent = "Invalid promo code. Please try again.";
-                promoStatus.classList.add("error");
-                yourPromoOffer.innerHTML = '';
+        profilePictureInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePicture.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
         });
+
+        const editUsernameButton = document.getElementById("edit-username-button");
+        const editPhoneButton = document.getElementById("edit-phone-button");
+        const editEmailButton = document.getElementById("edit-email-button");
+        const submitButton = document.getElementById("submit-button");
+        const usernameInput = document.getElementById("username");
+        const phoneInput = document.getElementById("phone");
+        const emailInput = document.getElementById("email");
+
+        function enableEditing(input) {
+            input.disabled = false;
+            submitButton.classList.remove("hidden");
+        }
+
+        editUsernameButton.addEventListener("click", () => enableEditing(usernameInput));
+        editPhoneButton.addEventListener("click", () => enableEditing(phoneInput));
+        editEmailButton.addEventListener("click", () => enableEditing(emailInput));
+
+        document.getElementById("profile-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            usernameInput.disabled = true;
+            phoneInput.disabled = true;
+            emailInput.disabled = true;
+            submitButton.classList.add("hidden");
+            const profileStatus = document.getElementById("profile-status");
+            profileStatus.textContent = "Profile updated successfully!";
+            profileStatus.classList.remove("error");
+        });
+
     </script>
 </body>
 </html>

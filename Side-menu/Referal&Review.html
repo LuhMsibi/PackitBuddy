@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deals and Discounts</title>
+    <title>Refer&Review</title>
     <style>
         /* General styles */
         body {
@@ -86,22 +86,32 @@
             }
 
 
+        /*Main body css refere and review*/
 
-
-            /*promotion css*/
-            .promo-container {
+        .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 90%;
-            max-width: 400px;
-            text-align: center;
+            max-width: 800px;
+            margin-top: 20px;
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
 
         .form-group {
@@ -115,7 +125,7 @@
             font-weight: 500;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="email"], textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -124,7 +134,11 @@
             font-size: 16px;
         }
 
-        input[type="text"]:focus {
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
             border-color: #000;
             outline: none;
         }
@@ -149,39 +163,14 @@
             background-color: #555;
         }
 
-        .promo-status {
+        .referral-status, .review-status {
             margin-top: 20px;
             font-size: 18px;
             color: green;
         }
 
-        .promo-status.error {
+        .referral-status.error, .review-status.error {
             color: red;
-        }
-
-        .section-title {
-            margin-top: 30px;
-            text-align: left;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .offer {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .offer-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .offer-details {
-            font-size: 14px;
-            color: #555;
         }
 
 
@@ -308,12 +297,12 @@
             </div>
             <div class="listSection">
                 <img src="../images/discount.svg" alt="#">
-                <li><a href="#">My Deals & Discounts</a></li>
+                <li><a href="Deals&Discounts.html">My Deals & Discounts</a></li>
             </div>
 
             <div class="listSection">
                 <img src="../images/refer.svg" alt="#">
-                <li><a href="Referal&Review.html">Referal & Review</a></li>
+                <li><a href="#">Referal & Review</a></li>
             </div>
 
             <div class="listSection">
@@ -329,30 +318,39 @@
     </nav>
     <main>
 
-        <div class="promo-container">
-            <h1>Apply Promo Code</h1>
-            <form id="promo-form">
-                <div class="form-group">
-                    <label for="promo-code">Promo Code</label>
-                    <input type="text" id="promo-code" name="promo-code" placeholder="Enter your promo code">
-                </div>
-                <button type="submit" class="submit-button">Apply</button>
-            </form>
-            <div id="promo-status" class="promo-status"></div>
-    
-            <div id="your-promotions">
-                <div class="section-title">Your Promotions</div>
-                <div id="your-promo-offer">
-                    <!-- Initially empty, will be populated with applied promo code -->
-                </div>
+        <div class="container">
+            <h1>Referral and Review</h1>
+            
+            <div class="section" id="referral-section">
+                <div class="section-title">Refer a Friend</div>
+                <form id="referral-form">
+                    <div class="form-group">
+                        <label for="friend-name">Friend's Full Name</label>
+                        <input type="text" id="friend-name" name="friend-name" placeholder="Enter your friend's full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="friend-email">Friend's Email</label>
+                        <input type="email" id="friend-email" name="friend-email" placeholder="Enter your friend's email address" required>
+                    </div>
+                    <button type="submit" class="submit-button">Send Referral</button>
+                </form>
+                <div id="referral-status" class="referral-status"></div>
             </div>
-    
-            <div id="current-offers">
-                <div class="section-title">Current Offers</div>
-                <div class="offer">
-                    <p class="offer-title">Promo Code: DISCOUNT50</p>
-                    <p class="offer-details">Use promo code DISCOUNT50 to get 50% off one ride. Valid for new users only.</p>
-                </div>
+            
+            <div class="section" id="review-section">
+                <div class="section-title">Leave a Review</div>
+                <form id="review-form">
+                    <div class="form-group">
+                        <label for="review-name">Your Full Name</label>
+                        <input type="text" id="review-name" name="review-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-message">Your Review</label>
+                        <textarea id="review-message" name="review-message" placeholder="Enter your review" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Submit Review</button>
+                </form>
+                <div id="review-status" class="review-status"></div>
             </div>
         </div>
 
@@ -380,45 +378,25 @@
         });
 
 
-        //promocode javascrip valid and invalid code
-        document.getElementById("promo-form").addEventListener("submit", function(event) {
+        //main body javascript refer and review
+        document.getElementById("referral-form").addEventListener("submit", function(event) {
             event.preventDefault();
-            const promoCode = document.getElementById("promo-code").value;
-            const promoStatus = document.getElementById("promo-status");
-            const yourPromoOffer = document.getElementById("your-promo-offer");
-
-            // Simulated promo code validation and offers
-            const offers = {
-                "BUDDY2024": {
-                    title: "20% Off Your Next Ride",
-                    details: "You have 20% off your next ride. Valid until December 31, 2024."
-                },
-                "DISCOUNT50": {
-                    title: "50% Off One Ride",
-                    details: "You have 50% off one ride. Valid for new users only."
-                },
-                "FREE50": {
-                    title: "50 Free Ride Points",
-                    details: "You have  50 free ride points. Valid until August 31, 2024."
-                }
-            };
-
-            if (offers[promoCode.toUpperCase()]) {
-                promoStatus.textContent = "Promo code applied successfully!";
-                promoStatus.classList.remove("error");
-                const offer = offers[promoCode.toUpperCase()];
-                yourPromoOffer.innerHTML = `
-                    <div class="offer">
-                        <p class="offer-title">${offer.title}</p>
-                        <p class="offer-details">${offer.details}</p>
-                    </div>
-                `;
-            } else {
-                promoStatus.textContent = "Invalid promo code. Please try again.";
-                promoStatus.classList.add("error");
-                yourPromoOffer.innerHTML = '';
-            }
+            const referralStatus = document.getElementById("referral-status");
+            referralStatus.textContent = "Referral sent successfully!";
+            referralStatus.classList.remove("error");
+            document.getElementById("referral-form").reset();
         });
+
+        document.getElementById("review-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const reviewStatus = document.getElementById("review-status");
+            reviewStatus.textContent = "Review submitted successfully!";
+            reviewStatus.classList.remove("error");
+            document.getElementById("review-form").reset();
+        });
+
+
+
     </script>
 </body>
 </html>
