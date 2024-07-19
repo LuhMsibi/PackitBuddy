@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Home</title>
+    <title>Driver Trip History</title>
     <style>
         /* General styles */
         body {
@@ -18,10 +18,6 @@
         main {
             flex: 1; /* Ensure main content takes up remaining space */
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: -100;
         }
 
         nav {
@@ -79,67 +75,65 @@
             display: block;
         }
 
-        .listSection:focus, .listSection:hover {
-            background-color: rgba(255, 251, 0, 0.5);
+        .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
         }
 
-        /*css for main content*/
-        #map {
-            height: 250px;
-            width: 100%;
-            margin-top: 0px;
-            position: relative;
-            z-index: 0;
-        }
-        .trip-details {
-            width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        /* Trip History CSS */
+        .trip-history-container {
+            background-color: #fff;
             padding: 20px;
-            box-sizing: border-box;
-            z-index: 1;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
         }
-        .trip-details h3 {
-            margin: 0 0 10px 0;
-            font-size: 24px;
+
+        .trip {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
         }
-        .trip-details h3 img {
-            margin-right: 10px;
+
+        .trip:last-child {
+            border-bottom: none;
         }
-        .trip-details .price {
-            font-size: 28px;
-            font-weight: bold;
+
+        .trip-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .trip-detail {
+            font-size: 16px;
             margin-bottom: 5px;
         }
-        .trip-details .rating {
-            color: #777;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .trip-details .info {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .trip-details .info span {
-            display: block;
-        }
-        .trip-details .button {
-            background-color: rgb(255, 251, 0);
-            color: #000;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            text-decoration: none;
+
+        .trip-fare {
             font-size: 18px;
-            display: block;
-            margin-top: 10px;
+            font-weight: bold;
         }
-        .trip-details > h3 > img {
-            width: 30px;
+
+        .trip-status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .completed {
+            background-color: #4CAF50;
+        }
+
+        .cancelled {
+            background-color: #f44336;
+        }
+
+        .pending {
+            background-color: #FF9800;
         }
 
         /* Responsive styles */
@@ -186,37 +180,39 @@
             }
             .listSection img {
                 width: 20px;
-                /* color: white; */ /* Remove this line */
-                padding: 10px;
                 filter: brightness(0) invert(1); /* Change color to white */
+                padding: 10px;
             }
 
-            .profile {
+            .listSection{
+                display: flex;
+            }
+
+            .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
+            }
+
+            .profile{
                 border-bottom: 1px solid #444;
                 margin-left: 10px;
                 color: white;
             }
 
-            .profile img {
+            .profile img{
                 width: 80px;
                 filter: brightness(0) invert(1); /* Change color to white */
             }
 
-            .bio {
+            .bio{
                 margin-top: 5px;
                 position: relative;
             }
-            #name {
+            #name{
                 position: absolute;
                 bottom: 2px;
             }
-
-            .listSection {
-                display: flex;
-            }
-
             #bottom {
-                margin-top: 90px; 
+                margin-top: 90px;
                 border-top: 1px solid #444; 
             }
         }
@@ -232,71 +228,79 @@
         <ul class="nav-links" id="nav-links">
             <span class="close-icon" id="close-icon">&times;</span>
             <div class="profile">
-                <a href="Driver Pages/side menu/Profile.html">
-                <img src="images/support.svg" alt="#">
-
-                <div class="bio">
-                    <p id="name">Leonel Messi</p>
-                    <p>LuhMsibi@gmail.com</p>
-                </div>
-            </a>
-            </div>
-
-
-            <div class="listSection">
-                <img src="images/home.svg" alt="#">
-                <li><a href="#">Home</a></li>
+                <a href="Profile.html">
+                    <img src="../../images/support.svg" alt="#">
+                    <div class="bio">
+                        <p id="name">Lungisani Msibi</p>
+                        <p>LuhMsibi@gmail.com</p>
+                    </div>
+                </a>
             </div>
             <div class="listSection">
-                <img src="images/history.svg" alt="#">
-                <li><a href="#">Trip History</a></li>
+                <img src="../images/home.svg" alt="#">
+                <li><a href="../../ForwaderHome.html">Home</a></li>
             </div>
             <div class="listSection">
-                <img src="images/verify.svg" alt="#">
-                <li><a href="Driver Pages/side menu/VehicleRegistration.html">Vehicle Registration & Verification</a></li>
+                <img src="../images/history.svg" alt="#">
+                <li><a href="TripHistory.html">Order History</a></li>
             </div>
             <div class="listSection">
-                <img src="images/route.svg" alt="#">
+                <img src="../../images/verify.svg" alt="#">
+                <li><a href="VehicleRegistration.html">Vehicle Registration & Verification</a></li>
+            </div>
+            <div class="listSection">
+                <img src="../../images/route.svg" alt="#">
                 <li><a href="#">Routing & Scheduling</a></li>
             </div>
             <div class="listSection">
-                <img src="images/support.svg" alt="#">
-                <li><a href="#">Support</a></li>
+                <img src="../../images/support.svg" alt="#">
+                <li><a href="DriverSupport.html">Support</a></li>
             </div>
             <div class="listSection" id="bottom">
-                <img src="images/log-out.svg" alt="#">
-                <li><a href="Login.html">Sign Out</a></li>
+                <img src="../../images/log-out.svg" alt="#">
+                <li><a href="../../Login.html">Sign Out</a></li>
             </div>
         </ul>
     </nav>
     <main>
-        <div id="map"></div>
+        <div class="trip-history-container">
+            <h1>Trip History</h1>
+            
+            <div class="trip">
+                <div class="trip-info">
+                    <p class="trip-detail"><strong>Date:</strong> July 10, 2024</p>
+                    <p class="trip-detail"><strong>Time:</strong> 10:30 AM</p>
+                    <p class="trip-detail"><strong>Pickup:</strong> 123 Main St</p>
+                    <p class="trip-detail"><strong>Drop-off:</strong> 456 Elm St</p>
+                    <p class="trip-detail trip-fare">Fare: R150</p>
+                </div>
+                <div class="trip-status completed">Completed</div>
+            </div>
+            
+            <div class="trip">
+                <div class="trip-info">
+                    <p class="trip-detail"><strong>Date:</strong> July 8, 2024</p>
+                    <p class="trip-detail"><strong>Time:</strong> 3:45 PM</p>
+                    <p class="trip-detail"><strong>Pickup:</strong> 789 Pine St</p>
+                    <p class="trip-detail"><strong>Drop-off:</strong> 321 Oak St</p>
+                    <p class="trip-detail trip-fare">Fare: R200</p>
+                </div>
+                <div class="trip-status cancelled">Cancelled</div>
+            </div>
 
-        <div class="trip-details">
-            <h3>
-                <img src="images/download.png" alt="truck">
-                Truck
-            </h3>
-            <div class="price">R400.91</div>
-            <div class="rating">★ 4.75</div>
-            <div class="rating">Moving Date: 12/08</div>
-
-            <div class="info">
-                <span>5 mins (1.0 mi) away</span>
-                <span>138 Van Beek St, Johannesburg</span>
+            <div class="trip">
+                <div class="trip-info">
+                    <p class="trip-detail"><strong>Date:</strong> July 5, 2024</p>
+                    <p class="trip-detail"><strong>Time:</strong> 9:00 AM</p>
+                    <p class="trip-detail"><strong>Pickup:</strong> 555 Cedar St</p>
+                    <p class="trip-detail"><strong>Drop-off:</strong> 666 Birch St</p>
+                    <p class="trip-detail trip-fare">Fare: R120</p>
+                </div>
+                <div class="trip-status pending">Pending</div>
             </div>
-            <div class="info">
-                <span>2 hr 44 min (97.3 mi) trip</span>
-                <span>Pretoria</span>
-            </div>
-            <div class="info">
-                <span>Long trip (45+ min)</span>
-            </div>
-            <a href="#" class="button">Accept</a>
         </div>
     </main>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKqk4I-ZPHLGueUz17Xhl-oCz0MZ2YVx0&callback=initMap" async defer></script>
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
@@ -317,32 +321,6 @@
                 navLinks.classList.remove('open');
             });
         });
-
-        function initMap() {
-            const johannesburg = { lat: -26.2033, lng: 28.0473 };  // 138 Van Beek Street
-            const pretoria = { lat: -25.7461, lng: 28.1881 };  // Pretoria
-
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: johannesburg
-            });
-
-            const directionsService = new google.maps.DirectionsService();
-            const directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-
-            const request = {
-                origin: johannesburg,
-                destination: pretoria,
-                travelMode: 'DRIVING'
-            };
-
-            directionsService.route(request, function(result, status) {
-                if (status === 'OK') {
-                    directionsRenderer.setDirections(result);
-                }
-            });
-        }
     </script>
 </body>
 </html>

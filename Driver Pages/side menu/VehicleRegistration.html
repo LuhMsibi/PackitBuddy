@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Home</title>
+    <title>Vehicle Registration</title>
     <style>
         /* General styles */
         body {
@@ -18,10 +18,6 @@
         main {
             flex: 1; /* Ensure main content takes up remaining space */
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: -100;
         }
 
         nav {
@@ -79,67 +75,59 @@
             display: block;
         }
 
-        .listSection:focus, .listSection:hover {
-            background-color: rgba(255, 251, 0, 0.5);
+        /* .nav-links li:hover,
+        .nav-links li:focus {
+            background-color: rgba(255, 251, 0, 0.5); /* Highlight color */
+            /* border-radius: 4px; */
+        /* } */ 
+
+        .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
+            }
+/* main content css registration*/
+.container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+            width: 60px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 18px;
         }
 
-        /*css for main content*/
-        #map {
-            height: 250px;
+        .container .text__input{
+            width: 93%;
+        }
+        .container select, .container input {
             width: 100%;
-            margin-top: 0px;
-            position: relative;
-            z-index: 0;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .trip-details {
+        .container input[type="file"] {
+            border: none;
+        }
+        .container button {
             width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 1;
-        }
-        .trip-details h3 {
-            margin: 0 0 10px 0;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-        }
-        .trip-details h3 img {
-            margin-right: 10px;
-        }
-        .trip-details .price {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .trip-details .rating {
-            color: #777;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .trip-details .info {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        .trip-details .info span {
-            display: block;
-        }
-        .trip-details .button {
+            padding: 10px;
             background-color: rgb(255, 251, 0);
             color: #000;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
         }
-        .trip-details > h3 > img {
-            width: 30px;
+        .container button:hover {
+            background-color: rgb(19, 26, 75);
         }
 
         /* Responsive styles */
@@ -168,6 +156,8 @@
                 left: 0;
             }
 
+            
+
             .nav-links a {
                 padding: 16px; /* Increase padding */
                 text-align: left;
@@ -178,6 +168,8 @@
                 border-bottom: none; /* Remove border from last item */
             }
 
+            
+
             .nav-links .close-icon {
                 display: block;
                 position: absolute;
@@ -185,40 +177,46 @@
                 top: 20px;
             }
             .listSection img {
-                width: 20px;
-                /* color: white; */ /* Remove this line */
-                padding: 10px;
-                filter: brightness(0) invert(1); /* Change color to white */
+            width: 20px;
+            /* color: white; */ /* Remove this line */
+            padding: 10px;
+            filter: brightness(0) invert(1); /* Change color to white */
             }
 
-            .profile {
+
+
+            .listSection{
+                display: flex;
+            }
+
+            .listSection:focus, .listSection:hover{
+                background-color: rgba(255, 251, 0, 0.5);
+            }
+
+            .profile{
                 border-bottom: 1px solid #444;
                 margin-left: 10px;
                 color: white;
             }
 
-            .profile img {
+            .profile img{
                 width: 80px;
                 filter: brightness(0) invert(1); /* Change color to white */
             }
 
-            .bio {
+            .bio{
                 margin-top: 5px;
                 position: relative;
             }
-            #name {
+            #name{
                 position: absolute;
                 bottom: 2px;
             }
-
-            .listSection {
-                display: flex;
-            }
-
             #bottom {
-                margin-top: 90px; 
+                margin-top: 90px;
                 border-top: 1px solid #444; 
             }
+            
         }
     </style>
 </head>
@@ -231,72 +229,91 @@
         </div>
         <ul class="nav-links" id="nav-links">
             <span class="close-icon" id="close-icon">&times;</span>
-            <div class="profile">
-                <a href="Driver Pages/side menu/Profile.html">
-                <img src="images/support.svg" alt="#">
 
-                <div class="bio">
-                    <p id="name">Leonel Messi</p>
+            <div class="profile">
+                <a href="../../Side-menu/Profile.html">
+                <img src="../../images/support.svg" alt="#">
+
+                <div class="bio" >
+                    <p id="name">Lungisani Msibi</p>
                     <p>LuhMsibi@gmail.com</p>
                 </div>
-            </a>
+                </a>
             </div>
 
-
             <div class="listSection">
-                <img src="images/home.svg" alt="#">
-                <li><a href="#">Home</a></li>
+                <img src="../../images/home.svg" alt="#">
+            
+                <li><a href="../../ForwaderHome.html">Home</a></li>
             </div>
             <div class="listSection">
-                <img src="images/history.svg" alt="#">
-                <li><a href="#">Trip History</a></li>
+                <img src="../../images/history.svg" alt="#">
+                <li><a href="DriverTripHistory.html">Trip History</a></li>
+               
             </div>
             <div class="listSection">
-                <img src="images/verify.svg" alt="#">
-                <li><a href="Driver Pages/side menu/VehicleRegistration.html">Vehicle Registration & Verification</a></li>
+                <img src="../../images/verify.svg" alt="#">
+                <li><a href="#">Vehicle Registration & Verification</a></li>
             </div>
             <div class="listSection">
-                <img src="images/route.svg" alt="#">
+                <img src="../../images/route.svg" alt="#">
                 <li><a href="#">Routing & Scheduling</a></li>
             </div>
             <div class="listSection">
-                <img src="images/support.svg" alt="#">
-                <li><a href="#">Support</a></li>
+                <img src="../../images/support.svg" alt="#">
+                <li><a href="DriverSupport.html">Support</a></li>
             </div>
-            <div class="listSection" id="bottom">
-                <img src="images/log-out.svg" alt="#">
-                <li><a href="Login.html">Sign Out</a></li>
+
+            <div class="listSection"  id="bottom">
+                <img src="../../images/log-out.svg" alt="#">
+                <li><a href="../../Login.html">Sign Out</a></li>
             </div>
         </ul>
     </nav>
     <main>
-        <div id="map"></div>
 
-        <div class="trip-details">
-            <h3>
-                <img src="images/download.png" alt="truck">
-                Truck
-            </h3>
-            <div class="price">R400.91</div>
-            <div class="rating">★ 4.75</div>
-            <div class="rating">Moving Date: 12/08</div>
-
-            <div class="info">
-                <span>5 mins (1.0 mi) away</span>
-                <span>138 Van Beek St, Johannesburg</span>
-            </div>
-            <div class="info">
-                <span>2 hr 44 min (97.3 mi) trip</span>
-                <span>Pretoria</span>
-            </div>
-            <div class="info">
-                <span>Long trip (45+ min)</span>
-            </div>
-            <a href="#" class="button">Accept</a>
+        <div class="container">
+            <img src="../../images/download.png" alt="Logo">
+            <h2>Vehicle Registration & Verification</h2>
+            <form>
+                <select name="vehicleType" required>
+                    <option value="">Select Vehicle Type</option>
+                    <option value="Coupe or Sedan">Coupe or Sedan</option>
+                    <option value="Truck">Truck</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                </select>
+                <input class="text__input" type="text" name="licensePlateNumber" placeholder="License Plate Number" required>
+                <select name="vehicleMake" required>
+                    <option value="">Vehicle Make</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Nissan">Nissan</option>
+                </select>
+                <select name="vehicleYear" required>
+                    <option value="">Vehicle Year</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                </select>
+                <label for="licenseCopy">Upload Copy of License:</label>
+                <input type="file" id="licenseCopy" name="licenseCopy" accept="image/*,application/pdf" required>
+                <label for="carPicture">Upload Picture of the Car:</label>
+                <input type="file" id="carPicture" name="carPicture" accept="image/*" required>
+                <button type="submit">CONTINUE</button>
+            </form>
         </div>
+
     </main>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKqk4I-ZPHLGueUz17Xhl-oCz0MZ2YVx0&callback=initMap" async defer></script>
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
@@ -318,31 +335,8 @@
             });
         });
 
-        function initMap() {
-            const johannesburg = { lat: -26.2033, lng: 28.0473 };  // 138 Van Beek Street
-            const pretoria = { lat: -25.7461, lng: 28.1881 };  // Pretoria
 
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: johannesburg
-            });
 
-            const directionsService = new google.maps.DirectionsService();
-            const directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-
-            const request = {
-                origin: johannesburg,
-                destination: pretoria,
-                travelMode: 'DRIVING'
-            };
-
-            directionsService.route(request, function(result, status) {
-                if (status === 'OK') {
-                    directionsRenderer.setDirections(result);
-                }
-            });
-        }
     </script>
 </body>
 </html>
