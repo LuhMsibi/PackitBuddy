@@ -18,7 +18,6 @@
         main {
             flex: 1; /* Ensure main content takes up remaining space */
             padding: 20px;
-            z-index: -100;
         }
 
         nav {
@@ -29,6 +28,7 @@
             padding: 0 20px;
             height: 60px;
             position: relative;
+            z-index: 20;
         }
 
         .hamburger {
@@ -319,7 +319,7 @@
             <span class="close-icon" id="close-icon">&times;</span>
 
             <div class="profile">
-                <img src="../images/support.svg" alt="#">
+                <img src="images/support.svg" alt="#">
 
                 <div class="bio" >
                     <p id="name">Lungisani Msibi</p>
@@ -328,32 +328,32 @@
             </div>
 
             <div class="listSection">
-                <img src="../images/home.svg" alt="#">
+                <img src="images/home.svg" alt="#">
             
                 <li><a href="../Home.html">Home</a></li>
             </div>
             <div class="listSection">
-                <img src="../images/history.svg" alt="#">
-                <li><a href="TripHistory.html">Order History</a></li>
+                <img src="images/history.svg" alt="#">
+                <li><a href="TripHistory.html">Trip History</a></li>
                
             </div>
             <div class="listSection">
-                <img src="../images/discount.svg" alt="#">
+                <img src="images/discount.svg" alt="#">
                 <li><a href="Deals&Discounts.html">My Deals & Discounts</a></li>
             </div>
 
             <div class="listSection">
-                <img src="../images/refer.svg" alt="#">
+                <img src="images/refer.svg" alt="#">
                 <li><a href="Referal&Review.html">Referal & Review</a></li>
             </div>
 
             <div class="listSection">
-                <img src="../images/support.svg" alt="#">
+                <img src="images/support.svg" alt="#">
                 <li><a href="Support.html">Support</a></li>
             </div>
 
             <div class="listSection"  id="bottom">
-                <img src="../images/log-out.svg" alt="#">
+                <img src="images/log-out.svg" alt="#">
                 <li><a href="../Login.html">Sign Out</a></li>
             </div>
         </ul>
@@ -429,6 +429,7 @@
 
         document.querySelector('.profile-picture-edit').addEventListener("click", () => {
             profilePictureInput.click();
+            console.log('profile');
         });
 
         profilePictureInput.addEventListener("change", function(event) {
@@ -468,6 +469,7 @@
             const profileStatus = document.getElementById("profile-status");
             profileStatus.textContent = "Profile updated successfully!";
             profileStatus.classList.remove("error");
+            console.log('hey');
         });
 
     </script>

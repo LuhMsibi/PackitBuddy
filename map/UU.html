@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip History</title>
+    <title>Profile</title>
     <style>
         /* General styles */
         body {
@@ -18,6 +18,7 @@
         main {
             flex: 1; /* Ensure main content takes up remaining space */
             padding: 20px;
+            z-index: -100;
         }
 
         nav {
@@ -75,66 +76,146 @@
             display: block;
         }
 
+        /* .nav-links li:hover,
+        .nav-links li:focus {
+            background-color: rgba(255, 251, 0, 0.5); /* Highlight color */
+            /* border-radius: 4px; */
+        /* } */ 
+
         .listSection:focus, .listSection:hover{
                 background-color: rgba(255, 251, 0, 0.5);
-        }
+            }
 
-        /* Trip History CSS */
-        .trip-history-container {
+
+        
+        /*edit profile css main*/
+        .profile-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 400px;
+            text-align: center;
         }
 
-        .trip {
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #e8e8e8;
+        }
+
+        .profile-picture-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 125px;
+            height: 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .trip:last-child {
-            border-bottom: none;
-        }
-
-        .trip-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .trip-detail {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .trip-fare {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .trip-status {
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: #fff;
+        .profile-picture-edit::before {
+            content: '\270E'; /* Unicode for the pencil icon */
             font-size: 14px;
         }
 
-        .completed {
-            background-color: #4CAF50;
+        .add-photo input[type="file"] {
+            display: none;
         }
 
-        .cancelled {
-            background-color: #f44336;
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
         }
 
-        .pending {
-            background-color: #FF9800;
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
+
+        input[type="text"], input[type="email"], input[type="file"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="file"]:focus, input[type="tel"]:focus {
+            border-bottom-color: #000;
+            outline: none;
+        }
+
+        .edit-button {
+            background-color: transparent;
+            border: none;
+            color: #00a000;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #333;
+        }
+
+        .submit-button:active {
+            background-color: #555;
+        }
+
+        .profile-status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+
+        .profile-status.error {
+            color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .icon {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
 
         /* Responsive styles */
         @media (max-width: 768px) {
@@ -162,6 +243,8 @@
                 left: 0;
             }
 
+            
+
             .nav-links a {
                 padding: 16px; /* Increase padding */
                 text-align: left;
@@ -172,6 +255,8 @@
                 border-bottom: none; /* Remove border from last item */
             }
 
+            
+
             .nav-links .close-icon {
                 display: block;
                 position: absolute;
@@ -179,10 +264,13 @@
                 top: 20px;
             }
             .listSection img {
-                width: 20px;
-                filter: brightness(0) invert(1); /* Change color to white */
-                padding: 10px;
+            width: 20px;
+            /* color: white; */ /* Remove this line */
+            padding: 10px;
+            filter: brightness(0) invert(1); /* Change color to white */
             }
+
+
 
             .listSection{
                 display: flex;
@@ -215,6 +303,8 @@
                 margin-top: 90px;
                 border-top: 1px solid #444; 
             }
+       
+            
         }
     </style>
 </head>
@@ -227,78 +317,88 @@
         </div>
         <ul class="nav-links" id="nav-links">
             <span class="close-icon" id="close-icon">&times;</span>
+
             <div class="profile">
-                <a href="Profile.html">
-                    <img src="../images/support.svg" alt="#">
-                    <div class="bio">
-                        <p id="name">Lungisani Msibi</p>
-                        <p>LuhMsibi@gmail.com</p>
-                    </div>
-                </a>
+                <img src="../images/support.svg" alt="#">
+
+                <div class="bio" >
+                    <p id="name">Lungisani Msibi</p>
+                    <p>LuhMsibi@gmail.com</p>
+                </div>
             </div>
+
             <div class="listSection">
                 <img src="../images/home.svg" alt="#">
+            
                 <li><a href="../Home.html">Home</a></li>
             </div>
             <div class="listSection">
                 <img src="../images/history.svg" alt="#">
                 <li><a href="TripHistory.html">Order History</a></li>
+               
             </div>
             <div class="listSection">
                 <img src="../images/discount.svg" alt="#">
                 <li><a href="Deals&Discounts.html">My Deals & Discounts</a></li>
             </div>
+
             <div class="listSection">
                 <img src="../images/refer.svg" alt="#">
                 <li><a href="Referal&Review.html">Referal & Review</a></li>
             </div>
+
             <div class="listSection">
                 <img src="../images/support.svg" alt="#">
                 <li><a href="Support.html">Support</a></li>
             </div>
-            <div class="listSection" id="bottom">
+
+            <div class="listSection"  id="bottom">
                 <img src="../images/log-out.svg" alt="#">
                 <li><a href="../Login.html">Sign Out</a></li>
             </div>
         </ul>
     </nav>
     <main>
-        <div class="trip-history-container">
-            <h1>Trip History</h1>
-            
-            <div class="trip">
-                <div class="trip-info">
-                    <p class="trip-detail"><strong>Date:</strong> July 10, 2024</p>
-                    <p class="trip-detail"><strong>Time:</strong> 10:30 AM</p>
-                    <p class="trip-detail"><strong>Pickup:</strong> 123 Main St</p>
-                    <p class="trip-detail"><strong>Drop-off:</strong> 456 Elm St</p>
-                    <p class="trip-detail trip-fare">Fare: R150</p>
-                </div>
-                <div class="trip-status completed">Completed</div>
-            </div>
-            
-            <div class="trip">
-                <div class="trip-info">
-                    <p class="trip-detail"><strong>Date:</strong> July 8, 2024</p>
-                    <p class="trip-detail"><strong>Time:</strong> 3:45 PM</p>
-                    <p class="trip-detail"><strong>Pickup:</strong> 789 Pine St</p>
-                    <p class="trip-detail"><strong>Drop-off:</strong> 321 Oak St</p>
-                    <p class="trip-detail trip-fare">Fare: R200</p>
-                </div>
-                <div class="trip-status cancelled">Cancelled</div>
-            </div>
 
-            <div class="trip">
-                <div class="trip-info">
-                    <p class="trip-detail"><strong>Date:</strong> July 5, 2024</p>
-                    <p class="trip-detail"><strong>Time:</strong> 9:00 AM</p>
-                    <p class="trip-detail"><strong>Pickup:</strong> 555 Cedar St</p>
-                    <p class="trip-detail"><strong>Drop-off:</strong> 666 Birch St</p>
-                    <p class="trip-detail trip-fare">Fare: R120</p>
+        <div class="profile-container">
+            <h1>Personal Info</h1>
+            <div class="profile-picture-wrapper">
+                <img id="profile-picture" src="../images/support.svg" alt="Profile Picture" class="profile-picture">
+                <div class="profile-picture-edit">
+                    <input type="file" id="profile-picture-input" name="profile-picture" accept="image/*">
                 </div>
-                <div class="trip-status pending">Pending</div>
             </div>
+            <p>Add a profile photo so drivers can recognise you</p>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="username">
+                        <span class="icon">&#128100;</span>
+                        Username
+                        <button type="button" id="edit-username-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="text" id="username" name="username" value="Aiden Van Wyk" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">
+                        <span class="icon">&#128241;</span>
+                        Phone Number
+                        <button type="button" id="edit-phone-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="tel" id="phone" name="phone" value="+27761414059" disabled required>
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        <span class="icon">&#9993;</span>
+                        Email
+                        <button type="button" id="edit-email-button" class="edit-button">Edit</button>
+                    </label>
+                    <input type="email" id="email" name="email" value="lindelanilungisani81@gmail.com" disabled required>
+                </div>
+                <button type="submit" id="submit-button" class="submit-button hidden">Save Changes</button>
+            </form>
+            <div id="profile-status" class="profile-status"></div>
         </div>
+
     </main>
 
     <script>
@@ -321,6 +421,57 @@
                 navLinks.classList.remove('open');
             });
         });
+
+
+    //edit profile javascript
+    const profilePictureInput = document.getElementById("profile-picture-input");
+        const profilePicture = document.getElementById("profile-picture");
+
+        document.querySelector('.profile-picture-edit').addEventListener("click", () => {
+            profilePictureInput.click();
+            console.log('profile');
+        });
+
+        profilePictureInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePicture.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const editUsernameButton = document.getElementById("edit-username-button");
+        const editPhoneButton = document.getElementById("edit-phone-button");
+        const editEmailButton = document.getElementById("edit-email-button");
+        const submitButton = document.getElementById("submit-button");
+        const usernameInput = document.getElementById("username");
+        const phoneInput = document.getElementById("phone");
+        const emailInput = document.getElementById("email");
+
+        function enableEditing(input) {
+            input.disabled = false;
+            submitButton.classList.remove("hidden");
+        }
+
+        editUsernameButton.addEventListener("click", () => enableEditing(usernameInput));
+        editPhoneButton.addEventListener("click", () => enableEditing(phoneInput));
+        editEmailButton.addEventListener("click", () => enableEditing(emailInput));
+
+        document.getElementById("profile-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            usernameInput.disabled = true;
+            phoneInput.disabled = true;
+            emailInput.disabled = true;
+            submitButton.classList.add("hidden");
+            const profileStatus = document.getElementById("profile-status");
+            profileStatus.textContent = "Profile updated successfully!";
+            profileStatus.classList.remove("error");
+            console.log('hey');
+        });
+
     </script>
 </body>
 </html>
