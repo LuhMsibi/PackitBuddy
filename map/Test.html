@@ -3,480 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nav Bar</title>
+    <title>Uber Scheduled Ride</title>
     <style>
-        /* General styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure full viewport height */
-        }
-
-        main {
-            flex: 1; /* Ensure main content takes up remaining space */
-            padding: 20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgb(19, 26, 75);
-            padding: 0 20px;
-            height: 60px;
-            position: relative;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 24px;
-        }
-
-        .hamburger .line {
-            width: 30px;
-            height: 3px;
-            background-color: white;
-        }
-
-        .close-icon {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: white;
-            position: absolute;
-            right: 20px;
-            top: 15px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-            margin-top: auto; /* Push to bottom */
-        }
-
-        .nav-links li {
-            margin-left: 20px;
-            transition: background-color 0.3s;
-            /* padding: 8px 16px; */
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-
-        /* .nav-links li:hover,
-        .nav-links li:focus {
-            background-color: rgba(255, 251, 0, 0.5); /* Highlight color */
-            /* border-radius: 4px; */
-        /* } */ 
-
-        .listSection:focus, .listSection:hover{
-                background-color: rgba(255, 251, 0, 0.5);
-            }
-
-                    /*edit profile css main*/
-        .profile-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .profile-picture-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        .profile-picture {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid #e8e8e8;
-        }
-
-        .profile-picture-edit {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: #fff;
-            border-radius: 50%;
-            width: 125px;
-            height: 24px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
         }
-
-        .profile-picture-edit::before {
-            content: '\270E'; /* Unicode for the pencil icon */
-            font-size: 14px;
+        .phone {
+            width: 320px;
+            height: 568px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: white;
+            overflow: hidden;
         }
-
-        .add-photo input[type="file"] {
-            display: none;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .header {
+            background-color: #1d1d1d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
             font-weight: bold;
         }
-
-        input[type="text"], input[type="email"], input[type="file"], input[type="tel"] {
-            width: 100%;
+        .battery, .time, .network {
+            font-size: 12px;
+        }
+        .battery {
+            float: right;
+        }
+        .time {
+            float: left;
+        }
+        .network {
+            float: right;
+            margin-right: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab {
             padding: 10px;
-            border: none;
-            border-bottom: 1px solid #ddd;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        input[type="text"]:focus, input[type="email"]:focus, input[type="file"]:focus, input[type="tel"]:focus {
-            border-bottom-color: #000;
-            outline: none;
-        }
-
-        .edit-button {
-            background-color: transparent;
-            border: none;
-            color: #00a000;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
-            margin-left: 10px;
         }
-
-        .submit-button {
+        .tab.active {
+            color: #1e90ff;
+            border-bottom: 2px solid #1e90ff;
+        }
+        .schedule-btn {
+            display: block;
             width: 100%;
-            padding: 10px;
-            background-color: #000;
-            color: #fff;
+            background-color: rgb(255, 251, 0);
+            color: #000;
+            text-align: center;
+            padding: 15px;
+            font-size: 16px;
             border: none;
             border-radius: 5px;
-            font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
-
-        .submit-button:hover {
-            background-color: #333;
+        .trip {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
         }
-
-        .submit-button:active {
-            background-color: #555;
+        .trip-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
-
-        .profile-status {
-            margin-top: 20px;
-            font-size: 18px;
-            color: green;
+        .trip-header div {
+            font-size: 14px;
+            font-weight: bold;
         }
-
-        .profile-status.error {
-            color: red;
+        .trip-details {
+            font-size: 14px;
         }
-
-        .hidden {
-            display: none;
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
         }
-
-        .icon {
-            font-size: 18px;
-            vertical-align: middle;
+        .status-indicator.green {
+            background-color: green;
         }
-
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: block;
-                flex-direction: column;
-                width: 70%;
-                max-width: 300px;
-                position: fixed;
-                top: 0;
-                left: -100%;
-                height: 100%;
-                background-color: rgb(19, 26, 75);
-                transition: left 0.3s ease;
-                padding-top: 60px; /* To avoid overlapping with the navbar */
-                border-right: 2px solid #444;
-                font-size: 16px; /* Increase font size */
-            }
-
-            .nav-links.open {
-                left: 0;
-            }
-
-            
-
-            .nav-links a {
-                padding: 16px; /* Increase padding */
-                text-align: left;
-                border-bottom: 1px solid #444; /* Add border */
-            }
-
-            .nav-links a:last-child {
-                border-bottom: none; /* Remove border from last item */
-            }
-
-            
-
-            .nav-links .close-icon {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 20px;
-            }
-            .listSection img {
-            width: 20px;
-            /* color: white; */ /* Remove this line */
-            padding: 10px;
-            filter: brightness(0) invert(1); /* Change color to white */
-            }
-
-
-
-            .listSection{
-                display: flex;
-            }
-
-            .listSection:focus, .listSection:hover{
-                background-color: rgba(255, 251, 0, 0.5);
-            }
-
-            .profile{
-                border-bottom: 1px solid #444;
-                margin-left: 10px;
-                color: white;
-            }
-
-            .profile img{
-                width: 80px;
-                filter: brightness(0) invert(1); /* Change color to white */
-            }
-
-            .bio{
-                margin-top: 5px;
-                position: relative;
-            }
-            #name{
-                position: absolute;
-                bottom: 2px;
-            }
-            #bottom {
-                margin-top: 90px;
-                border-top: 1px solid #444; 
-            }
-            
+        .status-indicator.red {
+            background-color: red;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="hamburger" id="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+    <div class="phone">
+        <div class="content">
+            <div class="tabs">
+                <div class="tab active" id="upcoming-tab">Upcoming</div>
+                <div class="tab" id="past-tab">Past</div>
+            </div>
+            <button class="schedule-btn">START TRIP</button>
+            <div id="upcoming" class="trip-section">
+                <div class="trip">
+                    <div class="trip-header">
+                        <div>thur, Aug 15 at 10:30 AM</div>
+                        <div>
+                            <span>Consigment</span> 
+                            <span>Type:</span> 
+                            <span>1 Bedroom</span>
+                        </div>
+                    </div>
+                    <div class="trip-details">
+                        <div><span class="status-indicator green"></span>138 van beek street</div>
+                        <div><span class="status-indicator red"></span>Pretoria</div>
+                    </div>
+                </div>
+            </div>
+            <div id="past" class="trip-section" style="display: none;">
+                <div class="trip">
+                    <div class="trip-header">
+                        <div>Mon, May 10 at 2:00 PM</div>
+                        <div>
+                            <span>Consigment</span> 
+                            <span>Trype:</span> 
+                            <span>2 Bedroom</span>
+                        </div>
+                    </div>
+                    <div class="trip-details">
+                        <div><span class="status-indicator green"></span>Office</div>
+                        <div><span class="status-indicator red"></span>Central Park</div>
+                    </div>
+                </div>
+                <div class="trip">
+                    <div class="trip-header">
+                        <div>Fri, April 22 at 6:00 PM</div>
+                        <div>
+                            <span>Consigment</span> 
+                            <span>Type:</span> 
+                            <span>Office</span>
+                        </div>
+                    </div>
+                    <div class="trip-details">
+                        <div><span class="status-indicator green"></span>2 herb street</div>
+                        <div><span class="status-indicator red"></span>Parkstation</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <ul class="nav-links" id="nav-links">
-            <span class="close-icon" id="close-icon">&times;</span>
-
-            <div class="profile">
-                <a href="../Side-menu/Profile.html">
-                <img src="images/support.svg" alt="#">
-
-                <div class="bio" >
-                    <p id="name">Lungisani Msibi</p>
-                    <p>LuhMsibi@gmail.com</p>
-                </div>
-            </a>
-            </div>
-
-            <div class="listSection">
-                <img src="images/home.svg" alt="#">
-            
-                <li><a href="#">Home</a></li>
-            </div>
-            <div class="listSection">
-                <img src="images/history.svg" alt="#">
-                <li><a href="#">Order History</a></li>
-               
-            </div>
-            <div class="listSection">
-                <img src="images/discount.svg" alt="#">
-                <li><a href="#">My Deals & Discounts</a></li>
-            </div>
-
-            <div class="listSection">
-                <img src="images/refer.svg" alt="#">
-                <li><a href="#">Referal & Review</a></li>
-            </div>
-
-            <div class="listSection">
-                <img src="images/support.svg" alt="#">
-                <li><a href="#">Support</a></li>
-            </div>
-
-            <div class="listSection"  id="bottom">
-                <img src="images/log-out.svg" alt="#">
-                <li><a href="Login.html">Sign Out</a></li>
-            </div>
-        </ul>
-    </nav>
-    <main>
-
-        <div class="profile-container">
-            <h1>Personal Info</h1>
-            <div class="profile-picture-wrapper">
-                <img id="profile-picture" src="../../images/support.svg" alt="Profile Picture" class="profile-picture">
-                <div class="profile-picture-edit">
-                    <input type="file" id="profile-picture-input" name="profile-picture" accept="image/*">
-                </div>
-            </div>
-            <p>Add a profile photo so drivers can recognise you</p>
-            <form id="profile-form">
-                <div class="form-group">
-                    <label for="username">
-                        <span class="icon">&#128100;</span>
-                        Username
-                        <button type="button" id="edit-username-button" class="edit-button">Edit</button>
-                    </label>
-                    <input type="text" id="username" name="username" value="Aiden Van Wyk" disabled required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">
-                        <span class="icon">&#128241;</span>
-                        Phone Number
-                        <button type="button" id="edit-phone-button" class="edit-button">Edit</button>
-                    </label>
-                    <input type="tel" id="phone" name="phone" value="+27761414059" disabled required>
-                </div>
-                <div class="form-group">
-                    <label for="email">
-                        <span class="icon">&#9993;</span>
-                        Email
-                        <button type="button" id="edit-email-button" class="edit-button">Edit</button>
-                    </label>
-                    <input type="email" id="email" name="email" value="lindelanilungisani81@gmail.com" disabled required>
-                </div>
-                <button type="submit" id="submit-button" class="submit-button hidden">Save Changes</button>
-            </form>
-            <div id="profile-status" class="profile-status"></div>
-        </div>
-    </main>
-
+    </div>
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        const closeIcon = document.getElementById('close-icon');
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const upcomingSection = document.getElementById('upcoming');
+            const pastSection = document.getElementById('past');
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-
-        closeIcon.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-        });
-
-        // Add event listener to nav links to close menu when clicked
-        const navItems = navLinks.querySelectorAll('li');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('open');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    if (this.id === 'upcoming-tab') {
+                        upcomingSection.style.display = 'block';
+                        pastSection.style.display = 'none';
+                    } else {
+                        upcomingSection.style.display = 'none';
+                        pastSection.style.display = 'block';
+                    }
+                });
             });
         });
-
-
-
-
-
-
-
-
-
-
-        //ttttt
-        const profilePictureInput = document.getElementById("profile-picture-input");
-        const profilePicture = document.getElementById("profile-picture");
-
-        document.querySelector('.profile-picture-edit').addEventListener("click", () => {
-            profilePictureInput.click();
-        });
-
-        profilePictureInput.addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicture.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        const editUsernameButton = document.getElementById("edit-username-button");
-        const editPhoneButton = document.getElementById("edit-phone-button");
-        const editEmailButton = document.getElementById("edit-email-button");
-        const submitButton = document.getElementById("submit-button");
-        const usernameInput = document.getElementById("username");
-        const phoneInput = document.getElementById("phone");
-        const emailInput = document.getElementById("email");
-
-        function enableEditing(input) {
-            input.disabled = false;
-            submitButton.classList.remove("hidden");
-        }
-
-        editUsernameButton.addEventListener("click", () => enableEditing(usernameInput));
-        editPhoneButton.addEventListener("click", () => enableEditing(phoneInput));
-        editEmailButton.addEventListener("click", () => enableEditing(emailInput));
-
-        document.getElementById("profile-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            usernameInput.disabled = true;
-            phoneInput.disabled = true;
-            emailInput.disabled = true;
-            submitButton.classList.add("hidden");
-            const profileStatus = document.getElementById("profile-status");
-            profileStatus.textContent = "Profile updated successfully!";
-            profileStatus.classList.remove("error");
-        });
-
-
-
     </script>
 </body>
 </html>

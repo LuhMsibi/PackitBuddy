@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Registration</title>
+    <title>Routing and Scheduling</title>
     <style>
-        /* General styles */
-        body {
+                /* General styles */
+                body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -84,54 +84,102 @@
         .listSection:focus, .listSection:hover{
                 background-color: rgba(255, 251, 0, 0.5);
             }
-/* main content css registration*/
-.container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .container img {
-            max-width: 100px;
-            margin-bottom: 20px;
-            width: 60px;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .container .text__input{
-            width: 93%;
-        }
-        .container select, .container input {
+        /*main content style*/
+            .phone {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            height: 568px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: white;
+            overflow: hidden;
         }
-        .container input[type="file"] {
-            border: none;
-        }
-        .container button {
-            width: 100%;
+        .header {
+            background-color: #1d1d1d;
+            color: white;
             padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .battery, .time, .network {
+            font-size: 12px;
+        }
+        .battery {
+            float: right;
+        }
+        .time {
+            float: left;
+        }
+        .network {
+            float: right;
+            margin-right: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .tab.active {
+            color: #1e90ff;
+            border-bottom: 2px solid #1e90ff;
+        }
+        .schedule-btn {
+            display: block;
+            width: 100%;
             background-color: rgb(255, 251, 0);
             color: #000;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            text-align: center;
+            padding: 15px;
             font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
         }
-        .container button:hover {
-            background-color: rgb(19, 26, 75);
+        .trip {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+        .trip-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .trip-header div {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .trip-details {
+            font-size: 14px;
+        }
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .status-indicator.green {
+            background-color: green;
+        }
+        .status-indicator.red {
+            background-color: red;
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
+               /* Responsive styles */
+               @media (max-width: 768px) {
             .hamburger {
                 display: flex;
             }
@@ -229,92 +277,121 @@
         </div>
         <ul class="nav-links" id="nav-links">
             <span class="close-icon" id="close-icon">&times;</span>
-
             <div class="profile">
-                <a href="../../Side-menu/Profile.html">
-                <img src="../../images/support.svg" alt="#">
-
-                <div class="bio" >
-                    <p id="name">Lungisani Msibi</p>
-                    <p>LuhMsibi@gmail.com</p>
-                </div>
+                <a href="Profile.html">
+                    <img src="../../images/support.svg" alt="#">
+                    <div class="bio">
+                        <p id="name">Lungisani Msibi</p>
+                        <p>LuhMsibi@gmail.com</p>
+                    </div>
                 </a>
             </div>
-
             <div class="listSection">
                 <img src="../../images/home.svg" alt="#">
-            
                 <li><a href="../../ForwaderHome.html">Home</a></li>
             </div>
             <div class="listSection">
                 <img src="../../images/history.svg" alt="#">
                 <li><a href="DriverTripHistory.html">Trip History</a></li>
-               
             </div>
             <div class="listSection">
                 <img src="../../images/verify.svg" alt="#">
-                <li><a href="#">Vehicle Registration & Verification</a></li>
+                <li><a href="VehicleRegistration.html">Vehicle Registration & Verification</a></li>
             </div>
             <div class="listSection">
                 <img src="../../images/route.svg" alt="#">
-                <li><a href="Routing&Scheduling.html">Routing & Scheduling</a></li>
+                <li><a href="#">Routing & Scheduling</a></li>
             </div>
             <div class="listSection">
                 <img src="../../images/support.svg" alt="#">
                 <li><a href="DriverSupport.html">Support</a></li>
             </div>
-
-            <div class="listSection"  id="bottom">
+            <div class="listSection" id="bottom">
                 <img src="../../images/log-out.svg" alt="#">
                 <li><a href="../../Login.html">Sign Out</a></li>
             </div>
         </ul>
     </nav>
     <main>
-
-        <div class="container">
-            <img src="../../images/download.png" alt="Logo">
-            <h2>Vehicle Registration & Verification</h2>
-            <form>
-                <select name="vehicleType" required>
-                    <option value="">Select Vehicle Type</option>
-                    <option value="Coupe or Sedan">Coupe or Sedan</option>
-                    <option value="Truck">Truck</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Motorcycle">Motorcycle</option>
-                </select>
-                <input class="text__input" type="text" name="licensePlateNumber" placeholder="License Plate Number" required>
-                <select name="vehicleMake" required>
-                    <option value="">Vehicle Make</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Honda">Honda</option>
-                    <option value="Ford">Ford</option>
-                    <option value="Chevrolet">Chevrolet</option>
-                    <option value="Nissan">Nissan</option>
-                </select>
-                <select name="vehicleYear" required>
-                    <option value="">Vehicle Year</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                </select>
-                <label for="licenseCopy">Upload Copy of License:</label>
-                <input type="file" id="licenseCopy" name="licenseCopy" accept="image/*,application/pdf" required>
-                <label for="carPicture">Upload Picture of the Car:</label>
-                <input type="file" id="carPicture" name="carPicture" accept="image/*" required>
-                <button type="submit">CONTINUE</button>
-            </form>
+        <div class="phone">
+            <div class="content">
+                <div class="tabs">
+                    <div class="tab active" id="upcoming-tab">Upcoming</div>
+                    <div class="tab" id="past-tab">Past</div>
+                </div>
+                <button class="schedule-btn">START TRIP</button>
+                <div id="upcoming" class="trip-section">
+                    <div class="trip">
+                        <div class="trip-header">
+                            <div>Aug 15 at 10:30 AM</div>
+                            <div>
+                                <span>Consigment</span> 
+                                <span>Type:</span> 
+                                <span>1 Bedroom</span>
+                            </div>
+                        </div>
+                        <div class="trip-details">
+                            <div><span class="status-indicator green"></span>138 van beek street</div>
+                            <div><span class="status-indicator red"></span>Pretoria</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="past" class="trip-section" style="display: none;">
+                    <div class="trip">
+                        <div class="trip-header">
+                            <div>May 10 at 2:00 PM</div>
+                            <div>
+                                <span>Consigment</span> 
+                                <span>Trype:</span> 
+                                <span>2 Bedroom</span>
+                            </div>
+                        </div>
+                        <div class="trip-details">
+                            <div><span class="status-indicator green"></span>Office</div>
+                            <div><span class="status-indicator red"></span>Central Park</div>
+                        </div>
+                    </div>
+                    <div class="trip">
+                        <div class="trip-header">
+                            <div>April 22 at 6:00 PM</div>
+                            <div>
+                                <span>Consigment</span> 
+                                <span>Type:</span> 
+                                <span>Office</span>
+                            </div>
+                        </div>
+                        <div class="trip-details">
+                            <div><span class="status-indicator green"></span>2 herb street</div>
+                            <div><span class="status-indicator red"></span>Parkstation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </main>
 
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const upcomingSection = document.getElementById('upcoming');
+            const pastSection = document.getElementById('past');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    if (this.id === 'upcoming-tab') {
+                        upcomingSection.style.display = 'block';
+                        pastSection.style.display = 'none';
+                    } else {
+                        upcomingSection.style.display = 'none';
+                        pastSection.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        //nav bar script
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
         const closeIcon = document.getElementById('close-icon');
@@ -336,7 +413,7 @@
         });
 
 
+</script>
 
-    </script>
 </body>
 </html>

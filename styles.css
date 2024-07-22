@@ -6,7 +6,7 @@
 
 
  body{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     /* display: flex; */
     align-items: center;
     justify-content: center;
@@ -24,6 +24,9 @@
     padding: 20px 30px 12px;
     background-color: rgb(19, 26, 75);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.wr2{
+    margin-top: 80px;
 }
 
 .wrapper form {
@@ -48,7 +51,7 @@ form input {
     font-size: 16px;
     font-weight: 400;
     color: #333;
-    border-radius: 8px;
+    border-radius: 5px;
     background: #fff;
 } 
 
@@ -87,6 +90,7 @@ form p{
 form .media img{
     width: 30px;
     margin-top: 0;
+    margin-right: 10px;
 }
 
 .media__container{
@@ -94,12 +98,12 @@ form .media img{
     justify-content: center;
 }
 #login__options{
-    margin-top: 20px;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
 }
 .dropdown{
-    min-height: 60px;
+    /* min-height: 60px; */
     position: relative;
     /* padding: 0 15px; */
     font-size: 16px;
