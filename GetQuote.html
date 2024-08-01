@@ -33,7 +33,7 @@
             <div class="listSection">
                 <img src="images/home.svg" alt="#">
             
-                <li><a href="#">Home</a></li>
+                <li><a href="./Home.html">Home</a></li>
             </div>
             <div class="listSection">
                 <img src="images/history.svg" alt="#">
@@ -64,17 +64,17 @@
     <main>
         <h2>Get Quote</h2>
         <div class="form-container">
-            <h3>Total price: R250</h3>
+            <h3>Total price: R<span id="total-price">250</span></h3>
             <form action="Payment.html">
                 <div class="form-group">
                     <label for="consignment-type">Consignment Type</label>
                     <select id="consignment-type" name="consignment-type">
-                        <option value="Few items">Just few items</option>
-                        <option value="1bed">1 Bedroom</option>
-                        <option value="2bed">2 Bedroom</option>
-                        <option value="3bed">3 Bedroom</option>
-                        <option value="4bed">4+ Bedroom</option>
-                        <option value="Office">Office Move</option>
+                        <option class="option" value="Few items">Just few items</option>
+                        <option class="option" value="1bed">1 Bedroom</option>
+                        <option class="option" value="2bed">2 Bedroom</option>
+                        <option class="option" value="3bed">3 Bedroom</option>
+                        <option class="option" value="4bed">4+ Bedroom</option>
+                        <option class="option" value="Office">Office Move</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -98,6 +98,8 @@
             </form>
         </div>
     </main>
+    
+    
 
     <script>
         const hamburger = document.getElementById('hamburger');
@@ -119,6 +121,38 @@
                 navLinks.classList.remove('open');
             });
         });
+
+
+        //prices code
+    document.addEventListener('DOMContentLoaded', () => {
+        const consignmentType = document.getElementById('consignment-type');
+        const totalPriceElement = document.getElementById('total-price');
+
+        const consignmentPrices = {
+            'Few items': 250,
+            '1bed': 500,
+            '2bed': 750,
+            '3bed': 1000,
+            '4bed': 1250,
+            'Office': 1500
+        };
+
+        const distancePrice = parseFloat(localStorage.getItem('distancePrice')) || 0;
+
+        function updateTotalPrice() {
+            const consignmentPrice = consignmentPrices[consignmentType.value] || 0;
+            const totalPrice = consignmentPrice + distancePrice;
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        consignmentType.addEventListener('change', updateTotalPrice);
+
+        // Initialize the total price on page load
+        updateTotalPrice();
+    });
+</script>
+
+
     </script>
 </body>
 </html>

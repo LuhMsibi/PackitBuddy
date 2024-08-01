@@ -288,7 +288,6 @@
 
             .profile img{
                 width: 80px;
-                filter: brightness(0) invert(1); /* Change color to white */
             }
 
             .bio{
@@ -319,11 +318,11 @@
             <span class="close-icon" id="close-icon">&times;</span>
 
             <div class="profile">
-                <img src="images/support.svg" alt="#">
+                <img id="nav-profile-picture"  src="images/support.svg" alt="#">
 
                 <div class="bio" >
-                    <p id="name">Lungisani Msibi</p>
-                    <p>LuhMsibi@gmail.com</p>
+                    <p id="nav-username">Lungisani Msibi</p>
+                    <p id="nav-email">LuhMsibi@gmail.com</p>
                 </div>
             </div>
 
@@ -422,55 +421,68 @@
             });
         });
 
+//profile javasc
+const profilePictureInput = document.getElementById("profile-picture-input");
+const profilePicture = document.getElementById("profile-picture");
+const navProfilePicture = document.getElementById("nav-profile-picture");
 
-    //edit profile javascript
-    const profilePictureInput = document.getElementById("profile-picture-input");
-        const profilePicture = document.getElementById("profile-picture");
+document.querySelector('.profile-picture-edit').addEventListener("click", () => {
+    profilePictureInput.click();
+});
 
-        document.querySelector('.profile-picture-edit').addEventListener("click", () => {
-            profilePictureInput.click();
-            console.log('profile');
-        });
+profilePictureInput.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            navProfilePicture.src = e.target.result;
+            profilePicture.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
-        profilePictureInput.addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicture.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
 
-        const editUsernameButton = document.getElementById("edit-username-button");
-        const editPhoneButton = document.getElementById("edit-phone-button");
-        const editEmailButton = document.getElementById("edit-email-button");
-        const submitButton = document.getElementById("submit-button");
-        const usernameInput = document.getElementById("username");
-        const phoneInput = document.getElementById("phone");
-        const emailInput = document.getElementById("email");
+// Form and edit buttons functionality
+const usernameInput = document.getElementById("username");
+const phoneInput = document.getElementById("phone");
+const emailInput = document.getElementById("email");
+const submitButton = document.getElementById("submit-button");
 
-        function enableEditing(input) {
-            input.disabled = false;
-            submitButton.classList.remove("hidden");
-        }
+document.getElementById("edit-username-button").addEventListener("click", function() {
+    usernameInput.disabled = false;
+    submitButton.classList.remove("hidden");
+});
 
-        editUsernameButton.addEventListener("click", () => enableEditing(usernameInput));
-        editPhoneButton.addEventListener("click", () => enableEditing(phoneInput));
-        editEmailButton.addEventListener("click", () => enableEditing(emailInput));
+document.getElementById("edit-phone-button").addEventListener("click", function() {
+    phoneInput.disabled = false;
+    submitButton.classList.remove("hidden");
+});
 
-        document.getElementById("profile-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            usernameInput.disabled = true;
-            phoneInput.disabled = true;
-            emailInput.disabled = true;
-            submitButton.classList.add("hidden");
-            const profileStatus = document.getElementById("profile-status");
-            profileStatus.textContent = "Profile updated successfully!";
-            profileStatus.classList.remove("error");
-            console.log('hey');
-        });
+document.getElementById("edit-email-button").addEventListener("click", function() {
+    emailInput.disabled = false;
+    submitButton.classList.remove("hidden");
+});
+
+// Form submission handling
+document.getElementById("profile-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    usernameInput.disabled = true;
+    phoneInput.disabled = true;
+    emailInput.disabled = true;
+    submitButton.classList.add("hidden");
+
+    const profileStatus = document.getElementById("profile-status");
+    profileStatus.textContent = "Profile updated successfully!";
+    profileStatus.classList.remove("error");
+
+    const navUsername = document.getElementById("nav-username");
+    const navEmail = document.getElementById("nav-email");
+    navUsername.textContent = usernameInput.value;
+    navEmail.textContent = emailInput.value;
+});
+
 
     </script>
 </body>

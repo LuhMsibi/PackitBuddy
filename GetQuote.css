@@ -78,6 +78,7 @@ nav {
         background-color: rgba(255, 251, 0, 0.5);
     }
 
+   
 
 /* Responsive styles */
 @media (max-width: 768px) {
@@ -205,6 +206,10 @@ select {
     font-size: 16px;
 }
 
+select .option{
+    width: 200px;
+}
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
@@ -232,4 +237,18 @@ select:focus {
 
 .submit-button:active {
     background-color: #555;
+}
+
+@media (max-width: 450px) {
+    select {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    select .option{
+        width: 200px;
+    }
 }
