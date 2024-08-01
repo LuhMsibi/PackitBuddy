@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkout.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="checkout.js" defer></script>
     <title>Nav Bar</title>
     <style>
         /* General styles */
@@ -305,30 +308,18 @@
     </nav>
     <main>
 
-        
-    <div class="payment-container">
-        <h1>Payment</h1>
-        <form action="Home.html">
-            <div class="form-group">
-                <label for="card-number">Card Number</label>
-                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
-                <div id="card-type"></div>
-            </div>
-            <div class="form-group">
-                <label for="expiry-date">Expiry Date</label>
-                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5">
-            </div>
-            <div class="form-group">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
-            </div>
-            <div class="form-group">
-                <label for="zip-code">ZIP Code</label>
-                <input type="text" id="zip-code" name="zip-code" placeholder="12345" maxlength="10">
-            </div>
-            <button type="submit" class="submit-button">Pay Now</button>
-        </form>
-    </div>
+         <!-- Display a payment form -->
+    <form id="payment-form">
+        <div id="payment-element">
+          <!--Stripe.js injects the Payment Element-->
+        </div>
+        <button id="submit">
+          <div class="spinner hidden" id="spinner"></div>
+          <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
+      </form>
+   
     </main>
 
     <script>
